@@ -20,7 +20,7 @@ CharacterDtoLocation _$CharacterDtoLocationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CharacterDtoLocation {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $CharacterDtoLocationCopyWith<$Res> {
           $Res Function(CharacterDtoLocation) then) =
       _$CharacterDtoLocationCopyWithImpl<$Res, CharacterDtoLocation>;
   @useResult
-  $Res call({int id, String? name});
+  $Res call({int? id, String? name});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$CharacterDtoLocationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$CharacterDtoLocationImplCopyWith<$Res>
       __$$CharacterDtoLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? name});
+  $Res call({int? id, String? name});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$CharacterDtoLocationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_$CharacterDtoLocationImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,13 +109,13 @@ class __$$CharacterDtoLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CharacterDtoLocationImpl implements _CharacterDtoLocation {
-  const _$CharacterDtoLocationImpl({required this.id, this.name});
+  const _$CharacterDtoLocationImpl({this.id, this.name});
 
   factory _$CharacterDtoLocationImpl.fromJson(Map<String, dynamic> json) =>
       _$$CharacterDtoLocationImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? name;
 
@@ -154,14 +154,14 @@ class _$CharacterDtoLocationImpl implements _CharacterDtoLocation {
 }
 
 abstract class _CharacterDtoLocation implements CharacterDtoLocation {
-  const factory _CharacterDtoLocation(
-      {required final int id, final String? name}) = _$CharacterDtoLocationImpl;
+  const factory _CharacterDtoLocation({final int? id, final String? name}) =
+      _$CharacterDtoLocationImpl;
 
   factory _CharacterDtoLocation.fromJson(Map<String, dynamic> json) =
       _$CharacterDtoLocationImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get name;
   @override

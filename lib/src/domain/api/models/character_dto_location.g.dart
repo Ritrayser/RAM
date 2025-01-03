@@ -9,7 +9,7 @@ part of 'character_dto_location.dart';
 _$CharacterDtoLocationImpl _$$CharacterDtoLocationImplFromJson(
         Map<String, dynamic> json) =>
     _$CharacterDtoLocationImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 

@@ -11,7 +11,6 @@ class HomeScreenBloc extends Cubit<HomeScreenBlocState> {
 
   Future<void> _init() async {
     try {
-      await Future.delayed(const Duration(seconds: 5));
       final response = await _api.getAllCharacter();
       emit(HomeScreenBlocDataState(response: response));
     } catch (e) {

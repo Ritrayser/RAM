@@ -80,6 +80,7 @@ class CharaterContainer extends StatelessWidget {
   final String? gender;
   final String? type;
   final CharacterDtoLocation? location;
+
   const CharaterContainer(
       {super.key,
       required this.name,
@@ -92,52 +93,21 @@ class CharaterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white12,
       ),
       padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
           if (image != null)
             CachedNetworkImage(
               imageUrl: image!,
             ),
-          switch (status) {
-            CharacterStatus.alive => const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'alive',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 21,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            CharacterStatus.dead => const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'dead',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 21,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            CharacterStatus.unknown => const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'unknown',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 21,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-          },
+          _CharaterStatusInfo(
+            status: status,
+            type: type,
+          ),
           SizedBox(
             width: double.infinity,
             child: Text(
@@ -149,33 +119,11 @@ class CharaterContainer extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              gender!,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 21,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              location.toString(),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 21,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          if (type != null && type!.isNotEmpty)
+          if (location?.name != null && location!.name!.isNotEmpty)
             SizedBox(
               width: double.infinity,
               child: Text(
-                type!,
+                location!.name!,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 21,
@@ -185,6 +133,63 @@ class CharaterContainer extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+class _CharaterStatusInfo extends StatelessWidget {
+  final CharacterStatus status;
+  final String? type;
+
+  const _CharaterStatusInfo({
+    required this.status,
+    this.type,
+    super.key,
+  });
+
+  String _getText() {
+    var result = status.name;
+    if (type?.isNotEmpty == true) {
+      result += ' - $type';
+    }
+    return result;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = switch (status) {
+      CharacterStatus.alive => Colors.green,
+      CharacterStatus.dead => Colors.red,
+      CharacterStatus.unknown => Colors.grey,
+    };
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 10.0,
+            right: 5,
+          ),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            _getText(),
+            style: TextStyle(
+              color: color,
+              fontSize: 21,
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
     );
   }
 }
