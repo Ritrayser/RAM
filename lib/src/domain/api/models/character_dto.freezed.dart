@@ -27,6 +27,7 @@ mixin _$CharacterDto {
   String? get gender => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   CharacterDtoLocation? get location => throw _privateConstructorUsedError;
+  List<String> get episode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $CharacterDtoCopyWith<$Res> {
       String? image,
       String? gender,
       String? type,
-      CharacterDtoLocation? location});
+      CharacterDtoLocation? location,
+      List<String> episode});
 
   $CharacterDtoLocationCopyWith<$Res>? get location;
 }
@@ -72,6 +74,7 @@ class _$CharacterDtoCopyWithImpl<$Res, $Val extends CharacterDto>
     Object? gender = freezed,
     Object? type = freezed,
     Object? location = freezed,
+    Object? episode = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -102,6 +105,10 @@ class _$CharacterDtoCopyWithImpl<$Res, $Val extends CharacterDto>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as CharacterDtoLocation?,
+      episode: null == episode
+          ? _value.episode
+          : episode // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 
@@ -133,7 +140,8 @@ abstract class _$$CharacterDtoImplCopyWith<$Res>
       String? image,
       String? gender,
       String? type,
-      CharacterDtoLocation? location});
+      CharacterDtoLocation? location,
+      List<String> episode});
 
   @override
   $CharacterDtoLocationCopyWith<$Res>? get location;
@@ -157,6 +165,7 @@ class __$$CharacterDtoImplCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? type = freezed,
     Object? location = freezed,
+    Object? episode = null,
   }) {
     return _then(_$CharacterDtoImpl(
       id: null == id
@@ -187,6 +196,10 @@ class __$$CharacterDtoImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as CharacterDtoLocation?,
+      episode: null == episode
+          ? _value._episode
+          : episode // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -201,7 +214,9 @@ class _$CharacterDtoImpl implements _CharacterDto {
       this.image,
       this.gender,
       this.type,
-      this.location});
+      this.location,
+      final List<String> episode = const []})
+      : _episode = episode;
 
   factory _$CharacterDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$CharacterDtoImplFromJson(json);
@@ -222,10 +237,18 @@ class _$CharacterDtoImpl implements _CharacterDto {
   final String? type;
   @override
   final CharacterDtoLocation? location;
+  final List<String> _episode;
+  @override
+  @JsonKey()
+  List<String> get episode {
+    if (_episode is EqualUnmodifiableListView) return _episode;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_episode);
+  }
 
   @override
   String toString() {
-    return 'CharacterDto(id: $id, name: $name, status: $status, image: $image, gender: $gender, type: $type, location: $location)';
+    return 'CharacterDto(id: $id, name: $name, status: $status, image: $image, gender: $gender, type: $type, location: $location, episode: $episode)';
   }
 
   @override
@@ -240,13 +263,14 @@ class _$CharacterDtoImpl implements _CharacterDto {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            const DeepCollectionEquality().equals(other._episode, _episode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, status, image, gender, type, location);
+  int get hashCode => Object.hash(runtimeType, id, name, status, image, gender,
+      type, location, const DeepCollectionEquality().hash(_episode));
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +294,8 @@ abstract class _CharacterDto implements CharacterDto {
       final String? image,
       final String? gender,
       final String? type,
-      final CharacterDtoLocation? location}) = _$CharacterDtoImpl;
+      final CharacterDtoLocation? location,
+      final List<String> episode}) = _$CharacterDtoImpl;
 
   factory _CharacterDto.fromJson(Map<String, dynamic> json) =
       _$CharacterDtoImpl.fromJson;
@@ -289,6 +314,8 @@ abstract class _CharacterDto implements CharacterDto {
   String? get type;
   @override
   CharacterDtoLocation? get location;
+  @override
+  List<String> get episode;
   @override
   @JsonKey(ignore: true)
   _$$CharacterDtoImplCopyWith<_$CharacterDtoImpl> get copyWith =>

@@ -19,6 +19,10 @@ _$CharacterDtoImpl _$$CharacterDtoImplFromJson(Map<String, dynamic> json) =>
           ? null
           : CharacterDtoLocation.fromJson(
               json['location'] as Map<String, dynamic>),
+      episode: (json['episode'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CharacterDtoImplToJson(_$CharacterDtoImpl instance) =>
@@ -30,6 +34,7 @@ Map<String, dynamic> _$$CharacterDtoImplToJson(_$CharacterDtoImpl instance) =>
       'gender': instance.gender,
       'type': instance.type,
       'location': instance.location,
+      'episode': instance.episode,
     };
 
 const _$CharacterStatusEnumMap = {

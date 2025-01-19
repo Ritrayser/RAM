@@ -15,6 +15,7 @@ class CharacterDto with _$CharacterDto {
     String? gender,
     String? type,
     CharacterDtoLocation? location,
+    @Default({}) List<String> episode,
   }) = _CharacterDto;
 
   factory CharacterDto.fromJson(Map<String, Object?> json) =>

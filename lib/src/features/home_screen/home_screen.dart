@@ -5,8 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ram/src/domain/api/models/character_dto.dart';
 import 'package:new_ram/src/features/home_screen/home_screen_bloc.dart';
 import 'package:new_ram/src/features/home_screen/models/home_screen_bloc_state.dart';
+import 'package:new_ram/src/features/characters_screen/characters_screen.dart';
+import 'package:new_ram/src/ui/class_mytext.dart';
 import 'package:new_ram/src/ui/myinfo.dart';
 import 'package:new_ram/src/domain/api/models/character_dto_location.dart';
+import 'package:new_ram/src/domain/api/models/episode_dto.dart';
+import 'package:new_ram/src/domain/api/api_manager.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffF2F4F7),
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -45,19 +49,31 @@ class HomeScreen extends StatelessWidget {
                 state.map(
                   data: (data) {
                     return Expanded(
-                      child: ListView(
-                        children: data.response.results
-                            .map(
-                              (e) => CharaterContainer(
-                                name: e.name,
-                                image: e.image,
-                                status: e.status,
-                                gender: e.gender,
-                                type: e.type,
-                                location: e.location,
-                              ),
-                            )
-                            .toList(),
+                      child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        itemBuilder: (context, index) {
+                          final e = data.response.results[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return CharacterScreen(characterData: e);
+                              }));
+                            },
+                            child: CharaterContainer(
+                              name: e.name,
+                              image: e.image,
+                              status: e.status,
+                              gender: e.gender,
+                              type: e.type,
+                              location: e.location,
+                              firstEpisodeUrl: e.episode.firstOrNull,
+                            ),
+                          );
+                        },
+                        itemCount: data.response.results.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 12),
                       ),
                     );
                   },
@@ -80,68 +96,113 @@ class CharaterContainer extends StatelessWidget {
   final String? gender;
   final String? type;
   final CharacterDtoLocation? location;
+  final String? firstEpisodeUrl;
 
-  const CharaterContainer(
-      {super.key,
-      required this.name,
-      required this.status,
-      required this.gender,
-      required this.type,
-      required this.location,
-      required this.image});
+  const CharaterContainer({
+    super.key,
+    required this.name,
+    required this.status,
+    required this.gender,
+    required this.type,
+    required this.location,
+    required this.image,
+    this.firstEpisodeUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white12,
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          if (image != null)
-            CachedNetworkImage(
-              imageUrl: image!,
-            ),
-          _CharaterStatusInfo(
-            status: status,
-            type: type,
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 21,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(1),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            if (image != null)
+              Row(
+                children: [
+                  Expanded(
+                    child: CachedNetworkImage(
+                      imageUrl: image!,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.left,
+            Padding(
+              padding: const EdgeInsets.only(top: 16, left: 12),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CharaterStatusInfo(
+                      status: status,
+                      type: type,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 21,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    if (location?.name != null && location!.name!.isNotEmpty)
+                      MyText(
+                          title: 'Last known locations:',
+                          subtitle: location!.name!,
+                          leadingWidget: const Image(
+                            height: 38,
+                            width: 38,
+                            image: AssetImage(
+                              'assets/images/Icon.png',
+                            ),
+                          )),
+                    if (firstEpisodeUrl?.isNotEmpty == true)
+                      FutureBuilder<EpisodeDto>(
+                        future: ApiManager()
+                            .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),
+                        builder: (context, data) {
+                          if (data.hasData) {
+                            return MyText(
+                              title: 'First seen in:',
+                              subtitle: data.data!.name ?? '',
+                              leadingWidget: const Image(
+                                height: 38,
+                                width: 38,
+                                image: AssetImage('assets/images/film-03.png'),
+                              ),
+                            );
+                          }
+                          return const Text(
+                            'Loading location...',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 21,
+                            ),
+                            textAlign: TextAlign.left,
+                          );
+                        },
+                      ),
+                  ]),
             ),
-          ),
-          if (location?.name != null && location!.name!.isNotEmpty)
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                location!.name!,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 21,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
-class _CharaterStatusInfo extends StatelessWidget {
+class CharaterStatusInfo extends StatelessWidget {
   final CharacterStatus status;
   final String? type;
 
-  const _CharaterStatusInfo({
+  const CharaterStatusInfo({
     required this.status,
     this.type,
     super.key,
@@ -184,7 +245,7 @@ class _CharaterStatusInfo extends StatelessWidget {
             _getText(),
             style: TextStyle(
               color: color,
-              fontSize: 21,
+              fontSize: 18,
             ),
             textAlign: TextAlign.left,
           ),
