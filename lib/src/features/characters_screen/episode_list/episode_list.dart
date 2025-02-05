@@ -26,11 +26,19 @@ class EpisodesList extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Episodes'),
+              const Text(
+                'Episodes',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
               ...(state ?? [])
                   .map(
                     (e) => ListTile(
-                      title: Text(e.name ?? ''),
+                      title: Text(
+                        e.name ?? '',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
                   )
                   .toList(),

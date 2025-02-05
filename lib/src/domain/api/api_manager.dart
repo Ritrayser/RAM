@@ -31,7 +31,7 @@ class ApiManager {
 
   Future<List<EpisodeDto>> getMultipleEpisodes(String ids) async {
     final response = await _dio.get(
-      'episode/$ids',
+      '/episode/$ids',
     );
     if (response.data is List) {
       final data = response.data as List;

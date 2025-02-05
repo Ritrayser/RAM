@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ram/src/domain/api/models/character_dto.dart';
 import 'package:new_ram/src/features/home_screen/home_screen_bloc.dart';
@@ -111,17 +112,18 @@ class CharaterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(1),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            if (image != null)
-              Row(
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          if (image != null)
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(80), bottom: Radius.circular(80)),
+              child: Row(
                 children: [
                   Expanded(
                     child: CachedNetworkImage(
@@ -131,68 +133,68 @@ class CharaterContainer extends StatelessWidget {
                   ),
                 ],
               ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16, left: 12),
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CharaterStatusInfo(
-                      status: status,
-                      type: type,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        name,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 21,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    if (location?.name != null && location!.name!.isNotEmpty)
-                      MyText(
-                          title: 'Last known locations:',
-                          subtitle: location!.name!,
-                          leadingWidget: const Image(
-                            height: 38,
-                            width: 38,
-                            image: AssetImage(
-                              'assets/images/Icon.png',
-                            ),
-                          )),
-                    if (firstEpisodeUrl?.isNotEmpty == true)
-                      FutureBuilder<EpisodeDto>(
-                        future: ApiManager()
-                            .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),
-                        builder: (context, data) {
-                          if (data.hasData) {
-                            return MyText(
-                              title: 'First seen in:',
-                              subtitle: data.data!.name ?? '',
-                              leadingWidget: const Image(
-                                height: 38,
-                                width: 38,
-                                image: AssetImage('assets/images/film-03.png'),
-                              ),
-                            );
-                          }
-                          return const Text(
-                            'Loading location...',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 21,
-                            ),
-                            textAlign: TextAlign.left,
-                          );
-                        },
-                      ),
-                  ]),
             ),
-          ],
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, left: 12),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CharaterStatusInfo(
+                    status: status,
+                    type: type,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      name,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 21,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  if (location?.name != null && location!.name!.isNotEmpty)
+                    MyText(
+                        title: 'Last known locations:',
+                        subtitle: location!.name!,
+                        leadingWidget: const Image(
+                          height: 38,
+                          width: 38,
+                          image: AssetImage(
+                            'assets/images/Icon.png',
+                          ),
+                        )),
+                  if (firstEpisodeUrl?.isNotEmpty == true)
+                    FutureBuilder<EpisodeDto>(
+                      future: ApiManager()
+                          .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),
+                      builder: (context, data) {
+                        if (data.hasData) {
+                          return MyText(
+                            title: 'First seen in:',
+                            subtitle: data.data!.name ?? '',
+                            leadingWidget: const Image(
+                              height: 38,
+                              width: 38,
+                              image: AssetImage('assets/images/film-03.png'),
+                            ),
+                          );
+                        }
+                        return const Text(
+                          'Loading location...',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 21,
+                          ),
+                          textAlign: TextAlign.left,
+                        );
+                      },
+                    ),
+                ]),
+          ),
+        ],
       ),
     );
   }
@@ -245,7 +247,7 @@ class CharaterStatusInfo extends StatelessWidget {
             _getText(),
             style: TextStyle(
               color: color,
-              fontSize: 18,
+              fontSize: 17,
             ),
             textAlign: TextAlign.left,
           ),
