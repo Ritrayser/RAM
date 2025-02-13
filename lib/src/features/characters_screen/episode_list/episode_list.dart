@@ -33,12 +33,17 @@ class EpisodesList extends StatelessWidget {
               ...(state ?? [])
                   .map(
                     (e) => ListTile(
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 29,
+                      ),
                       title: Text(
                         e.name ?? '',
                         style: const TextStyle(
                           fontSize: 20,
                         ),
                       ),
+                      // onTap: () {},
                     ),
                   )
                   .toList(),

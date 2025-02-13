@@ -13,7 +13,11 @@ class CharacterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(characterData.name),
+        title: Text(
+          characterData.name,
+          style:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
       backgroundColor: const Color(0xffF2F4F7),
       body: ListView(

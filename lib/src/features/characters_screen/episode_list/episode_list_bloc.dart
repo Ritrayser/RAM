@@ -10,11 +10,16 @@ class EpisodeListBloc extends Cubit<List<EpisodeDto>?> {
   }
 
   Future<void> _unit(List<String> urls) async {
-    final ids = urls
-        .map(
-          (e) => e.replaceAll('https://rickandmortyapi.com/api/episode/', ''),
-        )
-        .join(',');
+    String ids = '';
+
+    for (String url in urls) {
+      if (ids.isNotEmpty) {
+        ids += ',';
+      }
+
+      ids += url.replaceAll('https://rickandmortyapi.com/api/episode/', '');
+    }
+
     final episodes = await ApiManager().getMultipleEpisodes(ids);
     emit(episodes);
   }

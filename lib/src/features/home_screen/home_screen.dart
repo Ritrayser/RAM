@@ -112,89 +112,106 @@ class CharaterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          if (image != null)
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(80), bottom: Radius.circular(80)),
-              child: Row(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(35),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            if (image != null)
+              Row(
                 children: [
                   Expanded(
-                    child: CachedNetworkImage(
-                      imageUrl: image!,
-                      fit: BoxFit.fitWidth,
+                    child: AspectRatio(
+                      aspectRatio: 360 / 265,
+                      child: CachedNetworkImage(
+                        imageUrl: image!,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16, left: 12),
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CharaterStatusInfo(
-                    status: status,
-                    type: type,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      name,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 21,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CharaterStatusInfo(
+                      status: status,
+                      type: type,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 21,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
                     ),
-                  ),
-                  if (location?.name != null && location!.name!.isNotEmpty)
-                    MyText(
-                        title: 'Last known locations:',
-                        subtitle: location!.name!,
-                        leadingWidget: const Image(
-                          height: 38,
-                          width: 38,
-                          image: AssetImage(
-                            'assets/images/Icon.png',
-                          ),
-                        )),
-                  if (firstEpisodeUrl?.isNotEmpty == true)
-                    FutureBuilder<EpisodeDto>(
-                      future: ApiManager()
-                          .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),
-                      builder: (context, data) {
-                        if (data.hasData) {
-                          return MyText(
-                            title: 'First seen in:',
-                            subtitle: data.data!.name ?? '',
-                            leadingWidget: const Image(
-                              height: 38,
-                              width: 38,
-                              image: AssetImage('assets/images/film-03.png'),
-                            ),
-                          );
-                        }
-                        return const Text(
-                          'Loading location...',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                          ),
-                          textAlign: TextAlign.left,
-                        );
-                      },
-                    ),
-                ]),
-          ),
-        ],
+                    if (location?.name != null && location!.name!.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 24),
+                        child: MyText(
+                            title: 'Last known locations:',
+                            subtitle: location!.name!,
+                            leadingWidget: const Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Image(
+                                height: 25,
+                                width: 25,
+                                image: AssetImage(
+                                  'assets/images/Icon.png',
+                                ),
+                                fit: BoxFit.contain,
+                              ),
+                            )),
+                      ),
+                    if (firstEpisodeUrl?.isNotEmpty == true)
+                      Padding(
+                        padding: EdgeInsets.only(top: 24),
+                        child: FutureBuilder<EpisodeDto>(
+                          future: ApiManager()
+                              .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),
+                          builder: (context, data) {
+                            if (data.hasData) {
+                              return MyText(
+                                title: 'First seen in:',
+                                subtitle: data.data!.name ?? '',
+                                leadingWidget: const Padding(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Image(
+                                    height: 25,
+                                    width: 25,
+                                    image:
+                                        AssetImage('assets/images/film-03.png'),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
+                              );
+                            }
+                            return const Text(
+                              'Loading location...',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                              ),
+                              textAlign: TextAlign.left,
+                            );
+                          },
+                        ),
+                      ),
+                  ]),
+            ),
+          ],
+        ),
       ),
     );
   }
