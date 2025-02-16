@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ram/src/domain/api/models/episode_dto.dart';
-
+import 'package:new_ram/src/features/episode_screen/episode_screen.dart';
 import 'package:new_ram/src/features/characters_screen/episode_list/episode_list_bloc.dart';
 
 class EpisodesList extends StatelessWidget {
@@ -33,6 +33,12 @@ class EpisodesList extends StatelessWidget {
               ...(state ?? [])
                   .map(
                     (e) => ListTile(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return EpisodeScreen(episodeData: e);
+                        }));
+                      },
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 29,
@@ -43,7 +49,6 @@ class EpisodesList extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      // onTap: () {},
                     ),
                   )
                   .toList(),
