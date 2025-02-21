@@ -18,13 +18,9 @@ class EpisodeScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color(0xffF2F4F7),
-      body: Container(
-        child: const Column(
-          children: [
-            CharacterGridView(
-              charactersUrls: [],
-            ),
-          ],
+      body: Expanded(
+        child: CharacterGridView(
+          charactersUrls: episodeData.characters,
         ),
       ),
     );

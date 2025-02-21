@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ram/src/domain/api/models/character_dto.dart';
 import 'package:new_ram/src/features/home_screen/home_screen_bloc.dart';
 import 'package:new_ram/src/features/home_screen/models/home_screen_bloc_state.dart';
 import 'package:new_ram/src/features/characters_screen/characters_screen.dart';
+import 'package:new_ram/src/features/location_screen/location_screen.dart';
 import 'package:new_ram/src/ui/class_mytext.dart';
 import 'package:new_ram/src/ui/myinfo.dart';
 import 'package:new_ram/src/domain/api/models/character_dto_location.dart';
@@ -158,25 +159,35 @@ class CharaterContainer extends StatelessWidget {
                     ),
                     if (location?.name != null && location!.name!.isNotEmpty)
                       Padding(
-                        padding: EdgeInsets.only(top: 24),
-                        child: MyText(
-                            title: 'Last known locations:',
-                            subtitle: location!.name!,
-                            leadingWidget: const Padding(
-                              padding: EdgeInsets.only(right: 10),
-                              child: Image(
-                                height: 25,
-                                width: 25,
-                                image: AssetImage(
-                                  'assets/images/Icon.png',
+                        padding: const EdgeInsets.only(top: 24),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return const LocationScreen(
+                                locationUrl: '',
+                              );
+                            }));
+                          },
+                          child: MyText(
+                              title: 'Last known locations:',
+                              subtitle: location!.name!,
+                              leadingWidget: const Padding(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Image(
+                                  height: 25,
+                                  width: 25,
+                                  image: AssetImage(
+                                    'assets/images/Icon.png',
+                                  ),
+                                  fit: BoxFit.contain,
                                 ),
-                                fit: BoxFit.contain,
-                              ),
-                            )),
+                              )),
+                        ),
                       ),
                     if (firstEpisodeUrl?.isNotEmpty == true)
                       Padding(
-                        padding: EdgeInsets.only(top: 24),
+                        padding: const EdgeInsets.only(top: 24),
                         child: FutureBuilder<EpisodeDto>(
                           future: ApiManager()
                               .getEpisodeInfoFromRawUrl(firstEpisodeUrl!),

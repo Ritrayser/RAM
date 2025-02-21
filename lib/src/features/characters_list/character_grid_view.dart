@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ram/src/domain/api/models/character_dto.dart';
 import 'package:new_ram/src/features/characters_list/character_list_bloc.dart';
+import 'package:new_ram/src/features/characters_screen/characters_screen.dart';
 
 class CharacterGridView extends StatelessWidget {
   final List<String> charactersUrls;
@@ -14,8 +15,10 @@ class CharacterGridView extends StatelessWidget {
       create: (context) => CharacterGridViewBloc(charactersUrls),
       child: BlocBuilder<CharacterGridViewBloc, List<CharacterDto>?>(
         builder: (context, state) {
-          if (state == null || state.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
+          if (state == null) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
 
           return Container(
@@ -38,26 +41,48 @@ class CharacterGridView extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 8,
                       crossAxisSpacing: 8,
-                      childAspectRatio: 0.7,
+                      childAspectRatio: 0.8,
                     ),
                     itemCount: state.length,
                     itemBuilder: (context, index) {
                       final character = state[index];
-                      return Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Image.network(character
-                                  .image!), // Используем безопасный доступ к image
-                              const SizedBox(height: 8),
-                              Text(character.name),
-                            ],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return CharacterScreen(characterData: character);
+                          }));
+                        },
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              children: [
+                                Image.network(
+                                  character.image!,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 15),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        child: Text(
+                                          character.name,
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
