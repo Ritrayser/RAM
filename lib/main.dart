@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_ram/src/features/home_screen/home_screen.dart';
+import 'package:new_ram/src/ui/start_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const HomeScreen(),
+      home: const StartScreen(),
     );
   }
 }

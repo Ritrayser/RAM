@@ -21,6 +21,7 @@ mixin _$HomeScreenBlocState {
     required TResult Function(CharactersResponseDto response) data,
     required TResult Function() loading,
     required TResult Function() error,
+    required TResult Function(DioException error) networkError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$HomeScreenBlocState {
     TResult? Function(CharactersResponseDto response)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
+    TResult? Function(DioException error)? networkError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$HomeScreenBlocState {
     TResult Function(CharactersResponseDto response)? data,
     TResult Function()? loading,
     TResult Function()? error,
+    TResult Function(DioException error)? networkError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$HomeScreenBlocState {
     required TResult Function(HomeScreenBlocDataState value) data,
     required TResult Function(HomeScreenBlocLoadingState value) loading,
     required TResult Function(HomeScreenBlocErrorState value) error,
+    required TResult Function(HomeScreenNetworkErrorState value) networkError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$HomeScreenBlocState {
     TResult? Function(HomeScreenBlocDataState value)? data,
     TResult? Function(HomeScreenBlocLoadingState value)? loading,
     TResult? Function(HomeScreenBlocErrorState value)? error,
+    TResult? Function(HomeScreenNetworkErrorState value)? networkError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$HomeScreenBlocState {
     TResult Function(HomeScreenBlocDataState value)? data,
     TResult Function(HomeScreenBlocLoadingState value)? loading,
     TResult Function(HomeScreenBlocErrorState value)? error,
+    TResult Function(HomeScreenNetworkErrorState value)? networkError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,6 +168,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     required TResult Function(CharactersResponseDto response) data,
     required TResult Function() loading,
     required TResult Function() error,
+    required TResult Function(DioException error) networkError,
   }) {
     return data(response);
   }
@@ -172,6 +179,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     TResult? Function(CharactersResponseDto response)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
+    TResult? Function(DioException error)? networkError,
   }) {
     return data?.call(response);
   }
@@ -182,6 +190,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     TResult Function(CharactersResponseDto response)? data,
     TResult Function()? loading,
     TResult Function()? error,
+    TResult Function(DioException error)? networkError,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -196,6 +205,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     required TResult Function(HomeScreenBlocDataState value) data,
     required TResult Function(HomeScreenBlocLoadingState value) loading,
     required TResult Function(HomeScreenBlocErrorState value) error,
+    required TResult Function(HomeScreenNetworkErrorState value) networkError,
   }) {
     return data(this);
   }
@@ -206,6 +216,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     TResult? Function(HomeScreenBlocDataState value)? data,
     TResult? Function(HomeScreenBlocLoadingState value)? loading,
     TResult? Function(HomeScreenBlocErrorState value)? error,
+    TResult? Function(HomeScreenNetworkErrorState value)? networkError,
   }) {
     return data?.call(this);
   }
@@ -216,6 +227,7 @@ class _$HomeScreenBlocDataStateImpl implements HomeScreenBlocDataState {
     TResult Function(HomeScreenBlocDataState value)? data,
     TResult Function(HomeScreenBlocLoadingState value)? loading,
     TResult Function(HomeScreenBlocErrorState value)? error,
+    TResult Function(HomeScreenNetworkErrorState value)? networkError,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -281,6 +293,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     required TResult Function(CharactersResponseDto response) data,
     required TResult Function() loading,
     required TResult Function() error,
+    required TResult Function(DioException error) networkError,
   }) {
     return loading();
   }
@@ -291,6 +304,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     TResult? Function(CharactersResponseDto response)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
+    TResult? Function(DioException error)? networkError,
   }) {
     return loading?.call();
   }
@@ -301,6 +315,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     TResult Function(CharactersResponseDto response)? data,
     TResult Function()? loading,
     TResult Function()? error,
+    TResult Function(DioException error)? networkError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -315,6 +330,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     required TResult Function(HomeScreenBlocDataState value) data,
     required TResult Function(HomeScreenBlocLoadingState value) loading,
     required TResult Function(HomeScreenBlocErrorState value) error,
+    required TResult Function(HomeScreenNetworkErrorState value) networkError,
   }) {
     return loading(this);
   }
@@ -325,6 +341,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     TResult? Function(HomeScreenBlocDataState value)? data,
     TResult? Function(HomeScreenBlocLoadingState value)? loading,
     TResult? Function(HomeScreenBlocErrorState value)? error,
+    TResult? Function(HomeScreenNetworkErrorState value)? networkError,
   }) {
     return loading?.call(this);
   }
@@ -335,6 +352,7 @@ class _$HomeScreenBlocLoadingStateImpl implements HomeScreenBlocLoadingState {
     TResult Function(HomeScreenBlocDataState value)? data,
     TResult Function(HomeScreenBlocLoadingState value)? loading,
     TResult Function(HomeScreenBlocErrorState value)? error,
+    TResult Function(HomeScreenNetworkErrorState value)? networkError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -393,6 +411,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     required TResult Function(CharactersResponseDto response) data,
     required TResult Function() loading,
     required TResult Function() error,
+    required TResult Function(DioException error) networkError,
   }) {
     return error();
   }
@@ -403,6 +422,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     TResult? Function(CharactersResponseDto response)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
+    TResult? Function(DioException error)? networkError,
   }) {
     return error?.call();
   }
@@ -413,6 +433,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     TResult Function(CharactersResponseDto response)? data,
     TResult Function()? loading,
     TResult Function()? error,
+    TResult Function(DioException error)? networkError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -427,6 +448,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     required TResult Function(HomeScreenBlocDataState value) data,
     required TResult Function(HomeScreenBlocLoadingState value) loading,
     required TResult Function(HomeScreenBlocErrorState value) error,
+    required TResult Function(HomeScreenNetworkErrorState value) networkError,
   }) {
     return error(this);
   }
@@ -437,6 +459,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     TResult? Function(HomeScreenBlocDataState value)? data,
     TResult? Function(HomeScreenBlocLoadingState value)? loading,
     TResult? Function(HomeScreenBlocErrorState value)? error,
+    TResult? Function(HomeScreenNetworkErrorState value)? networkError,
   }) {
     return error?.call(this);
   }
@@ -447,6 +470,7 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
     TResult Function(HomeScreenBlocDataState value)? data,
     TResult Function(HomeScreenBlocLoadingState value)? loading,
     TResult Function(HomeScreenBlocErrorState value)? error,
+    TResult Function(HomeScreenNetworkErrorState value)? networkError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -458,4 +482,154 @@ class _$HomeScreenBlocErrorStateImpl implements HomeScreenBlocErrorState {
 
 abstract class HomeScreenBlocErrorState implements HomeScreenBlocState {
   const factory HomeScreenBlocErrorState() = _$HomeScreenBlocErrorStateImpl;
+}
+
+/// @nodoc
+abstract class _$$HomeScreenNetworkErrorStateImplCopyWith<$Res> {
+  factory _$$HomeScreenNetworkErrorStateImplCopyWith(
+          _$HomeScreenNetworkErrorStateImpl value,
+          $Res Function(_$HomeScreenNetworkErrorStateImpl) then) =
+      __$$HomeScreenNetworkErrorStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DioException error});
+}
+
+/// @nodoc
+class __$$HomeScreenNetworkErrorStateImplCopyWithImpl<$Res>
+    extends _$HomeScreenBlocStateCopyWithImpl<$Res,
+        _$HomeScreenNetworkErrorStateImpl>
+    implements _$$HomeScreenNetworkErrorStateImplCopyWith<$Res> {
+  __$$HomeScreenNetworkErrorStateImplCopyWithImpl(
+      _$HomeScreenNetworkErrorStateImpl _value,
+      $Res Function(_$HomeScreenNetworkErrorStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$HomeScreenNetworkErrorStateImpl(
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as DioException,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HomeScreenNetworkErrorStateImpl implements HomeScreenNetworkErrorState {
+  const _$HomeScreenNetworkErrorStateImpl({required this.error});
+
+  @override
+  final DioException error;
+
+  @override
+  String toString() {
+    return 'HomeScreenBlocState.networkError(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeScreenNetworkErrorStateImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeScreenNetworkErrorStateImplCopyWith<_$HomeScreenNetworkErrorStateImpl>
+      get copyWith => __$$HomeScreenNetworkErrorStateImplCopyWithImpl<
+          _$HomeScreenNetworkErrorStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CharactersResponseDto response) data,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(DioException error) networkError,
+  }) {
+    return networkError(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CharactersResponseDto response)? data,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(DioException error)? networkError,
+  }) {
+    return networkError?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CharactersResponseDto response)? data,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(DioException error)? networkError,
+    required TResult orElse(),
+  }) {
+    if (networkError != null) {
+      return networkError(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeScreenBlocDataState value) data,
+    required TResult Function(HomeScreenBlocLoadingState value) loading,
+    required TResult Function(HomeScreenBlocErrorState value) error,
+    required TResult Function(HomeScreenNetworkErrorState value) networkError,
+  }) {
+    return networkError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeScreenBlocDataState value)? data,
+    TResult? Function(HomeScreenBlocLoadingState value)? loading,
+    TResult? Function(HomeScreenBlocErrorState value)? error,
+    TResult? Function(HomeScreenNetworkErrorState value)? networkError,
+  }) {
+    return networkError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeScreenBlocDataState value)? data,
+    TResult Function(HomeScreenBlocLoadingState value)? loading,
+    TResult Function(HomeScreenBlocErrorState value)? error,
+    TResult Function(HomeScreenNetworkErrorState value)? networkError,
+    required TResult orElse(),
+  }) {
+    if (networkError != null) {
+      return networkError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeScreenNetworkErrorState implements HomeScreenBlocState {
+  const factory HomeScreenNetworkErrorState(
+      {required final DioException error}) = _$HomeScreenNetworkErrorStateImpl;
+
+  DioException get error;
+  @JsonKey(ignore: true)
+  _$$HomeScreenNetworkErrorStateImplCopyWith<_$HomeScreenNetworkErrorStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

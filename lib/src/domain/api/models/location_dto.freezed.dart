@@ -24,6 +24,7 @@ mixin _$LocationDto {
   String? get name => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get deminsion => throw _privateConstructorUsedError;
+  List<String> get residents => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,12 @@ abstract class $LocationDtoCopyWith<$Res> {
           LocationDto value, $Res Function(LocationDto) then) =
       _$LocationDtoCopyWithImpl<$Res, LocationDto>;
   @useResult
-  $Res call({int? id, String? name, String? type, String? deminsion});
+  $Res call(
+      {int? id,
+      String? name,
+      String? type,
+      String? deminsion,
+      List<String> residents});
 }
 
 /// @nodoc
@@ -57,6 +63,7 @@ class _$LocationDtoCopyWithImpl<$Res, $Val extends LocationDto>
     Object? name = freezed,
     Object? type = freezed,
     Object? deminsion = freezed,
+    Object? residents = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -75,6 +82,10 @@ class _$LocationDtoCopyWithImpl<$Res, $Val extends LocationDto>
           ? _value.deminsion
           : deminsion // ignore: cast_nullable_to_non_nullable
               as String?,
+      residents: null == residents
+          ? _value.residents
+          : residents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -87,7 +98,12 @@ abstract class _$$LocationDtoImplCopyWith<$Res>
       __$$LocationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, String? type, String? deminsion});
+  $Res call(
+      {int? id,
+      String? name,
+      String? type,
+      String? deminsion,
+      List<String> residents});
 }
 
 /// @nodoc
@@ -105,6 +121,7 @@ class __$$LocationDtoImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? type = freezed,
     Object? deminsion = freezed,
+    Object? residents = null,
   }) {
     return _then(_$LocationDtoImpl(
       id: freezed == id
@@ -123,6 +140,10 @@ class __$$LocationDtoImplCopyWithImpl<$Res>
           ? _value.deminsion
           : deminsion // ignore: cast_nullable_to_non_nullable
               as String?,
+      residents: null == residents
+          ? _value._residents
+          : residents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -130,7 +151,13 @@ class __$$LocationDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocationDtoImpl implements _LocationDto {
-  const _$LocationDtoImpl({this.id, this.name, this.type, this.deminsion});
+  const _$LocationDtoImpl(
+      {this.id,
+      this.name,
+      this.type,
+      this.deminsion,
+      final List<String> residents = const []})
+      : _residents = residents;
 
   factory _$LocationDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationDtoImplFromJson(json);
@@ -143,10 +170,18 @@ class _$LocationDtoImpl implements _LocationDto {
   final String? type;
   @override
   final String? deminsion;
+  final List<String> _residents;
+  @override
+  @JsonKey()
+  List<String> get residents {
+    if (_residents is EqualUnmodifiableListView) return _residents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_residents);
+  }
 
   @override
   String toString() {
-    return 'LocationDto(id: $id, name: $name, type: $type, deminsion: $deminsion)';
+    return 'LocationDto(id: $id, name: $name, type: $type, deminsion: $deminsion, residents: $residents)';
   }
 
   @override
@@ -158,12 +193,15 @@ class _$LocationDtoImpl implements _LocationDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.deminsion, deminsion) ||
-                other.deminsion == deminsion));
+                other.deminsion == deminsion) &&
+            const DeepCollectionEquality()
+                .equals(other._residents, _residents));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, type, deminsion);
+  int get hashCode => Object.hash(runtimeType, id, name, type, deminsion,
+      const DeepCollectionEquality().hash(_residents));
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +222,8 @@ abstract class _LocationDto implements LocationDto {
       {final int? id,
       final String? name,
       final String? type,
-      final String? deminsion}) = _$LocationDtoImpl;
+      final String? deminsion,
+      final List<String> residents}) = _$LocationDtoImpl;
 
   factory _LocationDto.fromJson(Map<String, dynamic> json) =
       _$LocationDtoImpl.fromJson;
@@ -197,6 +236,8 @@ abstract class _LocationDto implements LocationDto {
   String? get type;
   @override
   String? get deminsion;
+  @override
+  List<String> get residents;
   @override
   @JsonKey(ignore: true)
   _$$LocationDtoImplCopyWith<_$LocationDtoImpl> get copyWith =>

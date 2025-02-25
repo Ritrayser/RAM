@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dio/dio.dart';
 import 'package:new_ram/src/domain/api/models/characters_response_dto.dart';
 
 part 'home_screen_bloc_state.freezed.dart';
@@ -12,4 +13,7 @@ class HomeScreenBlocState with _$HomeScreenBlocState {
   const factory HomeScreenBlocState.loading() = HomeScreenBlocLoadingState;
 
   const factory HomeScreenBlocState.error() = HomeScreenBlocErrorState;
+
+  const factory HomeScreenBlocState.networkError(
+      {required DioException error}) = HomeScreenNetworkErrorState;
 }

@@ -9,10 +9,12 @@ import 'package:new_ram/src/features/home_screen/models/home_screen_bloc_state.d
 import 'package:new_ram/src/features/characters_screen/characters_screen.dart';
 import 'package:new_ram/src/features/location_screen/location_screen.dart';
 import 'package:new_ram/src/ui/class_mytext.dart';
+import 'package:new_ram/src/ui/error_screen.dart';
 import 'package:new_ram/src/ui/myinfo.dart';
 import 'package:new_ram/src/domain/api/models/character_dto_location.dart';
 import 'package:new_ram/src/domain/api/models/episode_dto.dart';
 import 'package:new_ram/src/domain/api/api_manager.dart';
+import 'package:new_ram/src/ui/network_error_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -80,7 +82,9 @@ class HomeScreen extends StatelessWidget {
                     );
                   },
                   loading: (_) => const CircularProgressIndicator(),
-                  error: (_) => const Text('Error'),
+                  error: (_) => const Flexible(child: ErrorScreen()),
+                  networkError: (value) =>
+                      const Flexible(child: NetworkErrorScreen()),
                 ),
               ],
             ),
@@ -162,12 +166,15 @@ class CharaterContainer extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 24),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (context) {
-                              return const LocationScreen(
-                                locationUrl: '',
-                              );
-                            }));
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return LocationScreen(
+                                    locationUrl: location?.url,
+                                  );
+                                },
+                              ),
+                            );
                           },
                           child: MyText(
                               title: 'Last known locations:',

@@ -11,6 +11,7 @@ class LocationDto with _$LocationDto {
     String? name,
     String? type,
     String? deminsion,
+    @Default([]) List<String> residents,
   }) = _LocationDto;
 
   factory LocationDto.fromJson(Map<String, Object?> json) =>

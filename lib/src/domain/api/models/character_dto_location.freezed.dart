@@ -20,7 +20,7 @@ CharacterDtoLocation _$CharacterDtoLocationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CharacterDtoLocation {
-  int? get id => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $CharacterDtoLocationCopyWith<$Res> {
           $Res Function(CharacterDtoLocation) then) =
       _$CharacterDtoLocationCopyWithImpl<$Res, CharacterDtoLocation>;
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({String? url, String? name});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$CharacterDtoLocationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? url = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$CharacterDtoLocationImplCopyWith<$Res>
       __$$CharacterDtoLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({String? url, String? name});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$CharacterDtoLocationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? url = freezed,
     Object? name = freezed,
   }) {
     return _then(_$CharacterDtoLocationImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,19 +109,19 @@ class __$$CharacterDtoLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CharacterDtoLocationImpl implements _CharacterDtoLocation {
-  const _$CharacterDtoLocationImpl({this.id, this.name});
+  const _$CharacterDtoLocationImpl({this.url, this.name});
 
   factory _$CharacterDtoLocationImpl.fromJson(Map<String, dynamic> json) =>
       _$$CharacterDtoLocationImplFromJson(json);
 
   @override
-  final int? id;
+  final String? url;
   @override
   final String? name;
 
   @override
   String toString() {
-    return 'CharacterDtoLocation(id: $id, name: $name)';
+    return 'CharacterDtoLocation(url: $url, name: $name)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$CharacterDtoLocationImpl implements _CharacterDtoLocation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CharacterDtoLocationImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.url, url) || other.url == url) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, url, name);
 
   @JsonKey(ignore: true)
   @override
@@ -154,14 +154,14 @@ class _$CharacterDtoLocationImpl implements _CharacterDtoLocation {
 }
 
 abstract class _CharacterDtoLocation implements CharacterDtoLocation {
-  const factory _CharacterDtoLocation({final int? id, final String? name}) =
+  const factory _CharacterDtoLocation({final String? url, final String? name}) =
       _$CharacterDtoLocationImpl;
 
   factory _CharacterDtoLocation.fromJson(Map<String, dynamic> json) =
       _$CharacterDtoLocationImpl.fromJson;
 
   @override
-  int? get id;
+  String? get url;
   @override
   String? get name;
   @override

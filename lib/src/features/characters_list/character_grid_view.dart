@@ -41,7 +41,7 @@ class CharacterGridView extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 8,
                       crossAxisSpacing: 8,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.7,
                     ),
                     itemCount: state.length,
                     itemBuilder: (context, index) {
@@ -61,26 +61,26 @@ class CharacterGridView extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(12),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Image.network(
                                   character.image!,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 15),
-                                  child: Row(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: Column(
                                     children: [
-                                      SizedBox(
-                                        child: Text(
-                                          character.name,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
+                                      Text(
+                                        character.name,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: true,
+                                        style: const TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.left,
                                       ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),

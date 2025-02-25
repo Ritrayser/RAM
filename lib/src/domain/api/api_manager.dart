@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:new_ram/src/domain/api/models/character_dto.dart';
-import 'package:new_ram/src/domain/api/models/character_dto_location.dart';
 import 'package:new_ram/src/domain/api/models/episode_dto.dart';
+import 'package:new_ram/src/domain/api/models/location_dto.dart';
 
 import 'models/characters_response_dto.dart';
 
@@ -18,9 +18,9 @@ class ApiManager {
     return result;
   }
 
-  Future<CharacterDtoLocation> getLocationFromUrl(String url) async {
-    final result = await Dio().get('/location');
-    final res = CharacterDtoLocation.fromJson(result.data);
+  Future<LocationDto> getLocationFromUrl(String url) async {
+    final result = await Dio().get(url);
+    final res = LocationDto.fromJson(result.data);
     return res;
   }
 

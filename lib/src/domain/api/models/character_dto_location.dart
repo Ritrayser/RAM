@@ -7,7 +7,7 @@ part 'character_dto_location.g.dart';
 @freezed
 class CharacterDtoLocation with _$CharacterDtoLocation {
   const factory CharacterDtoLocation({
-    int? id,
+    String? url,
     String? name,
   }) = _CharacterDtoLocation;
 
